@@ -2,7 +2,6 @@
 
 A modern, feature-rich security dashboard application built with Java Swing and Python, offering comprehensive system security management and monitoring capabilities.
 
-![Dashboard Screenshot](.gitignore/Homepage.png)
 
 ##  Features
 
@@ -42,16 +41,16 @@ java -cp bin Main
 ### Build and Run(IDE)
 1. Open Project(GUI):
 ```
-Open an IDE of your choice (IntelliJ/Eclipse) is a better choice.
+Open an IDE of your choice (IntelliJ/Eclipse is a better option).
 Then Open folder and locate to the Swing App.
 ```
 3. Open Project(Terminal):
 ```
 In the IDE open up a terminal and got to a desired folder and clone the repository.
 ```
-``bash
+```
 git clone https://github.com/Ankits39229/swingapp.git
-``
+```
 
 ##   Project Structure
 
@@ -78,13 +77,13 @@ Swingapp/
 ##  Screenshots
 
 ### Home Dashboard
-![Home Page](.gitignore/Homepage.png)
+![Home Page](Resources/Screenshots/Homepage.png)
 
 ### Auditing
-![Audit Page](.gitignore/Audit_page.png)
+![Audit Page](Resources/Screenshots/Audit_page.png)
 
 ### System Cleaning
-![Cleanup Page](.gitignore/Cleanup_page.png)
+![Cleanup Page](Resources/Screenshots/Cleanup_page.png)
 
 ##  UI Components
 
