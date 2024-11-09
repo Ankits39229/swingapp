@@ -1,10 +1,10 @@
-# Windows Security Dashboard
+# Swing App
 
 A modern, feature-rich security dashboard application built with Java Swing and Python, offering comprehensive system security management and monitoring capabilities.
 
-![Dashboard Screenshot](path_to_screenshot.png)
+![Dashboard Screenshot](.gitignore/Homepage.png)
 
-## 🌟 Features
+##  Features
 
 - **Modern UI Design**: Clean and intuitive interface with dark mode theme
 - **Security Monitoring**: Real-time system security status monitoring
@@ -14,9 +14,8 @@ A modern, feature-rich security dashboard application built with Java Swing and 
 - **Security Auditing**: System security audit and reporting
 - **Remediation Tools**: Automated security issue remediation
 - **Account Management**: User account security settings and controls
-- **Custom Settings**: Configurable application preferences
 
-## 🚀 Installation
+##  Installation
 
 ### Prerequisites
 - Java JDK 11 or higher
@@ -25,11 +24,11 @@ A modern, feature-rich security dashboard application built with Java Swing and 
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/windows-security-dashboard.git
-cd windows-security-dashboard
+git clone https://github.com/Ankits39229/swingapp.git
+cd swingapp
 ```
 
-### Build and Run
+### Build and Run(Terminal/Bash)
 1. Compile Java files:
 ```bash
 javac -d bin src/*.java
@@ -40,40 +39,54 @@ javac -d bin src/*.java
 java -cp bin Main
 ```
 
-## 🛠️ Project Structure
+### Build and Run(IDE)
+1. Open Project(GUI):
+```
+Open an IDE of your choice (IntelliJ/Eclipse) is a better choice.
+Then Open folder and locate to the Swing App.
+```
+3. Open Project(Terminal):
+```
+In the IDE open up a terminal and got to a desired folder and clone the repository.
+```
+``bash
+git clone https://github.com/Ankits39229/swingapp.git
+``
+
+##   Project Structure
 
 ```
-windows-security-dashboard/
+Swingapp/
 ├── src/
 │   ├── java/
-│   │   ├── Main.java
-│   │   ├── Home.java
-│   │   ├── Clean.java
-│   │   ├── Troubleshoot.java
-│   │   ├── Firewall.java
-│   │   ├── Audit.java
-│   │   ├── Remediate.java
-│   │   ├── Account.java
-│   │   └── Settings.java
-│   └── python/
+│       ├── Main.java
+│       ├── Home.java
+│       ├── Clean.java
+│       ├── Troubleshoot.java
+│       ├── Firewall.java
+│       ├── Audit.java
+│       ├── Remediate.java
+│       ├── Account.java
+│       └── Settings.java
+├── appScripts
+|       ├── troubleshoot/
+|       |   ├── temp.py
 │       └── [Python scripts]
-├── resources/
-│   └── [Application resources]
 └── README.md
 ```
 
-## 📸 Screenshots
+##  Screenshots
 
 ### Home Dashboard
-[Screenshot placeholder]
+![Home Page](.gitignore/Homepage.png)
 
-### Security Monitoring
-[Screenshot placeholder]
+### Auditing
+![Audit Page](.gitignore/Audit_page.png)
 
 ### System Cleaning
-[Screenshot placeholder]
+![Cleanup Page](.gitignore/Cleanup_page.png)
 
-## 🎨 UI Components
+##  UI Components
 
 - **Color Scheme**:
   - Background: Dark theme (#202124)
@@ -88,15 +101,7 @@ windows-security-dashboard/
   - Shadow effects
   - Hover interactions
 
-## 🔧 Configuration
-
-The application supports various configuration options through the Settings panel:
-- Theme customization
-- Security scan intervals
-- Notification preferences
-- System monitoring settings
-
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -104,20 +109,13 @@ The application supports various configuration options through the Settings pane
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+##  License
 
-[Add your chosen license here]
+## Contact
 
-## 🙏 Acknowledgments
+Ankit - ankits3229@gmail.com
 
-- Java Swing for the UI framework
-- [Other libraries and tools used]
-
-## 📫 Contact
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
-
-Project Link: [https://github.com/yourusername/windows-security-dashboard](https://github.com/yourusername/windows-security-dashboard)
+Project Link: [https://github.com/Ankits39229/swingapp.git](https://github.com/Ankits39229/swingapp.git)
 
 ---
 ⭐️ Star this repo if you find it helpful!
