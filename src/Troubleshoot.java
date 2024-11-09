@@ -242,7 +242,7 @@ public class Troubleshoot {
                             }
                         } catch (Exception ex) {
                             ex.printStackTrace();
-                            statusLabel.setText("Error: Could not complete scan.");
+                            statusLabel.setText("Error: Couldn't complete scan.");
                         }
                     });
                 }
