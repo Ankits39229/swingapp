@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,17 +10,13 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class Troubleshoot {
     private static final Color BACKGROUND_COLOR = new Color(18, 18, 18);
@@ -29,29 +24,31 @@ public class Troubleshoot {
     private static final Color TEXT_COLOR = new Color(255, 255, 255);
     private static final Color SECONDARY_TEXT_COLOR = new Color(170, 170, 170);
     private static final Color BUTTON_COLOR = new Color(238, 10, 10);
-    private final VirusThreatProtectionPanel virusPanel;
-    private final FirewallNetworkPanel firewallPanel;
-    private final AccountProtectionPanel accountPanel;
-    private final AppBrowserControlPanel appBrowserPanel;
-    private final DeviceSecurityPanel deviceSecurityPanel;
-    private final DevicePerformanceHealthPanel devicePerformancePanel;
-    private final FamilyOptionsPanel familyPanel;
-    private final ProtectionHistoryPanel historyPanel;
-    private final SettingsPanel settingsPanel;
+
+    private final SystemPerformancePanel SystemPerformancePanel;
+    private final NetworkDiagnosticsPanel NetworkDiagnosticsPanel;
+    private final DriversIssuesPanel DriversIssuesPanel;
+    private final FileSystemRepairPanel FileSystemRepairPanel;
+    private final BlueScreenErrorPanel BlueScreenErrorPanel;
+    private final ApplicationCompatibilityIssuesPanel ApplicationCompatibilityIssuesPanel;
+    private final AudioTroubleshootingPanel AudioTroubleshootingPanel;
+    private final BluetoothAndDeviceConnectivityPanel BluetoothAndDeviceConnectivityPanel;
+    private final BrowserIssuesPanel BrowserIssuesPanel;
     private final JSplitPane splitPane;
-    private final JPanel[] sidePanels;
+//    private final JPanel[] sidePanels;
 
     public Troubleshoot(JPanel... sidePanels) {
-        this.sidePanels = sidePanels;
-        this.virusPanel = new VirusThreatProtectionPanel();
-        this.firewallPanel = new FirewallNetworkPanel();
-        this.accountPanel = new AccountProtectionPanel();
-        this.appBrowserPanel = new AppBrowserControlPanel();
-        this.deviceSecurityPanel = new DeviceSecurityPanel();
-        this.devicePerformancePanel = new DevicePerformanceHealthPanel();
-        this.familyPanel = new FamilyOptionsPanel();
-        this.historyPanel = new ProtectionHistoryPanel();
-        this.settingsPanel = new SettingsPanel();
+//        this.sidePanels = sidePanels;
+        this.SystemPerformancePanel = new SystemPerformancePanel();
+        this.NetworkDiagnosticsPanel = new NetworkDiagnosticsPanel();
+        this.DriversIssuesPanel = new DriversIssuesPanel();
+        this.FileSystemRepairPanel = new FileSystemRepairPanel();
+        this.BlueScreenErrorPanel = new BlueScreenErrorPanel();
+        this.ApplicationCompatibilityIssuesPanel = new ApplicationCompatibilityIssuesPanel();
+        this.AudioTroubleshootingPanel = new AudioTroubleshootingPanel();
+        this.BluetoothAndDeviceConnectivityPanel = new BluetoothAndDeviceConnectivityPanel();
+        this.BrowserIssuesPanel = new BrowserIssuesPanel();
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(BACKGROUND_COLOR);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -59,7 +56,7 @@ public class Troubleshoot {
         mainPanel.add(headerPanel, "North");
         JPanel gridPanel = this.createMainGridPanel();
         mainPanel.add(gridPanel, "Center");
-        this.splitPane = new JSplitPane(1, mainPanel, new JPanel());
+        this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mainPanel, new JPanel());
         this.splitPane.setDividerLocation(800);
         this.splitPane.setOneTouchExpandable(true);
         this.splitPane.setBackground(BACKGROUND_COLOR);
@@ -68,14 +65,14 @@ public class Troubleshoot {
 
     private JPanel createHeaderPanel() {
         JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new BoxLayout(headerPanel, 1));
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setBackground(BACKGROUND_COLOR);
-        JLabel titleLabel = new JLabel("Security at a Glance");
+        JLabel titleLabel = new JLabel("Troubleshoot");
         titleLabel.setForeground(TEXT_COLOR);
-        titleLabel.setFont(new Font("Segoe UI", 1, 24));
-        JLabel subtitleLabel = new JLabel("<html>See what's happening with the security and health of your device<br>and take any actions needed.</html>");
+        titleLabel.setFont(new Font("Segue UI", Font.BOLD, 24));
+        JLabel subtitleLabel = new JLabel("<html></html>");
         subtitleLabel.setForeground(SECONDARY_TEXT_COLOR);
-        subtitleLabel.setFont(new Font("Segoe UI", 0, 14));
+        subtitleLabel.setFont(new Font("Segue UI", Font.PLAIN, 14));
         headerPanel.add(titleLabel);
         headerPanel.add(Box.createVerticalStrut(10));
         headerPanel.add(subtitleLabel);
@@ -85,7 +82,16 @@ public class Troubleshoot {
     private JPanel createMainGridPanel() {
         JPanel mainPanel = new JPanel(new GridLayout(3, 3, 20, 20));
         mainPanel.setBackground(BACKGROUND_COLOR);
-        String[][] items = new String[][]{{"Virus & Threat Protection", "Manage your antivirus settings and scan your device for threats."}, {"Account Protection", "Manage your user accounts and security settings."}, {"Firewall & Network Protection", "Configure your firewall settings and monitor network activity."}, {"App & Browser Control", "Manage your app permissions and browser security settings."}, {"Device Security", "View status and manage hardware security features."}, {"Device Performance & Health", "Monitor the performance and health of your device."}, {"Family Options", "Manage how your family uses their devices."}, {"Protection History", "View latest protection actions and recommendations."}, {"Settings", "Adjust your security settings and preferences."}};
+        String[][] items = new String[][]{
+                {"System Performance", " Monitor resource usage, optimize startup, clean temp files."},
+                {"Network Diagnostics", "Test connectivity, reset adapters, fix DNS/IP issues."},
+                {"Drivers Issues", "Update, rollback, or repair drivers."},
+                {"File System Repair", " Repair system files and fix file system errors."},
+                {"Blue-Screen Error", "Blue Screen of Death, Analyze stop codes, check hardware connections, update drivers, and run diagnostics."},
+                {"Application Compatibility Issues", "Check for software updates, reinstall or repair applications, and verify system requirements."},
+                {"Audio Troubleshooting", " Resolve playback, driver, connection issues."},
+                {"Bluetooth & Device Connectivity", "Troubleshoot Bluetooth, peripheral connections."},
+                {"Browser Issues", " Clear cache, reset, fix crashes/extensions."}};
 
         for(int i = 0; i < items.length; ++i) {
             String title = items[i][0];
@@ -98,15 +104,15 @@ public class Troubleshoot {
 
     private JPanel createItemPanel(String title, String description, int index) {
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, 1));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(PANEL_BACKGROUND);
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        JLabel iconLabel = new JLabel("■");
+        JLabel iconLabel = new JLabel("👌");
         iconLabel.setForeground(BUTTON_COLOR);
-        iconLabel.setFont(new Font("Segoe UI", 1, 30));
+        iconLabel.setFont(new Font("Segue UI", Font.BOLD, 30));
         JButton titleButton = new JButton(title);
         titleButton.setForeground(TEXT_COLOR);
-        titleButton.setFont(new Font("Segoe UI", 1, 14));
+        titleButton.setFont(new Font("Segue UI", Font.BOLD, 14));
         titleButton.setBackground(PANEL_BACKGROUND);
         titleButton.setBorderPainted(false);
         titleButton.setFocusPainted(false);
@@ -116,7 +122,7 @@ public class Troubleshoot {
         });
         JLabel descLabel = new JLabel("<html>" + description + "</html>");
         descLabel.setForeground(SECONDARY_TEXT_COLOR);
-        descLabel.setFont(new Font("Segoe UI", 0, 12));
+        descLabel.setFont(new Font("Segue UI", Font.PLAIN, 12));
         panel.add(iconLabel);
         panel.add(Box.createVerticalStrut(10));
         panel.add(titleButton);
@@ -128,15 +134,15 @@ public class Troubleshoot {
     private void openSideBar(int index) {
         JPanel selectedPanel = null;
         switch (index) {
-            case 0 -> selectedPanel = this.virusPanel;
-            case 1 -> selectedPanel = this.accountPanel;
-            case 2 -> selectedPanel = this.firewallPanel;
-            case 3 -> selectedPanel = this.appBrowserPanel;
-            case 4 -> selectedPanel = this.deviceSecurityPanel;
-            case 5 -> selectedPanel = this.devicePerformancePanel;
-            case 6 -> selectedPanel = this.familyPanel;
-            case 7 -> selectedPanel = this.historyPanel;
-            case 8 -> selectedPanel = this.settingsPanel;
+            case 0 -> selectedPanel = this.SystemPerformancePanel;
+            case 1 -> selectedPanel = this.NetworkDiagnosticsPanel;
+            case 2 -> selectedPanel = this.DriversIssuesPanel;
+            case 3 -> selectedPanel = this.FileSystemRepairPanel;
+            case 4 -> selectedPanel = this.BlueScreenErrorPanel;
+            case 5 -> selectedPanel = this.ApplicationCompatibilityIssuesPanel;
+            case 6 -> selectedPanel = this.AudioTroubleshootingPanel;
+            case 7 -> selectedPanel = this.BluetoothAndDeviceConnectivityPanel;
+            case 8 -> selectedPanel = this.BrowserIssuesPanel;
         }
 
         if (selectedPanel != null) {
@@ -181,9 +187,9 @@ public class Troubleshoot {
 //        });
 //    }
 
-    public class VirusThreatProtectionPanel extends BaseSidebarPanel {
-        public VirusThreatProtectionPanel() {
-            super("Virus & Threat Protection");
+    public static class SystemPerformancePanel extends BaseSidebarPanel {
+        public SystemPerformancePanel() {
+            super("System Performance");
         }
 
         protected JPanel createContentPanel() {
@@ -258,9 +264,9 @@ public class Troubleshoot {
         }
     }
 
-    class FirewallNetworkPanel extends BaseSidebarPanel {
-        public FirewallNetworkPanel() {
-            super("Firewall");
+    static class NetworkDiagnosticsPanel extends BaseSidebarPanel {
+        public NetworkDiagnosticsPanel() {
+            super("Network Diagnostics");
         }
 
         protected JPanel createContentPanel() {
@@ -280,7 +286,7 @@ public class Troubleshoot {
             scanButton.setForeground(Color.WHITE);
             scanButton.setFocusPainted(false);
             scanButton.setBorderPainted(false);
-            scanButton.setCursor(new Cursor(12));
+            scanButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             JLabel statusLabel = new JLabel("Ready to scan");
             statusLabel.setForeground(SECONDARY_TEXT_COLOR);
             statusLabel.setHorizontalAlignment(0);
@@ -300,8 +306,7 @@ public class Troubleshoot {
                         scanButton.setText("Check");
                         statusLabel.setText("Scan Complete.");
                     } catch (Exception var5) {
-                        Exception ex = var5;
-                        ex.printStackTrace();
+                        var5.printStackTrace();
                     }
 
                 });
@@ -322,9 +327,9 @@ public class Troubleshoot {
         }
     }
 
-    class AccountProtectionPanel extends BaseSidebarPanel {
-        public AccountProtectionPanel() {
-            super("Account Protection");
+    class DriversIssuesPanel extends BaseSidebarPanel {
+        public DriversIssuesPanel() {
+            super("Driver Issues");
         }
 
         protected JPanel createContentPanel() {
@@ -332,9 +337,9 @@ public class Troubleshoot {
         }
     }
 
-    class AppBrowserControlPanel extends BaseSidebarPanel {
-        public AppBrowserControlPanel() {
-            super("App & Browser Control");
+    class FileSystemRepairPanel extends BaseSidebarPanel {
+        public FileSystemRepairPanel() {
+            super("File System Repair");
         }
 
         protected JPanel createContentPanel() {
@@ -342,9 +347,9 @@ public class Troubleshoot {
         }
     }
 
-    class DeviceSecurityPanel extends BaseSidebarPanel {
-        public DeviceSecurityPanel() {
-            super("Device Security");
+    class BlueScreenErrorPanel extends BaseSidebarPanel {
+        public BlueScreenErrorPanel() {
+            super("Blue-ScreenErrorPanel");
         }
 
         protected JPanel createContentPanel() {
@@ -352,9 +357,9 @@ public class Troubleshoot {
         }
     }
 
-    class DevicePerformanceHealthPanel extends BaseSidebarPanel {
-        public DevicePerformanceHealthPanel() {
-            super("Device Performance & Health");
+    class ApplicationCompatibilityIssuesPanel extends BaseSidebarPanel {
+        public ApplicationCompatibilityIssuesPanel() {
+            super("Application Compatibility Issues");
         }
 
         protected JPanel createContentPanel() {
@@ -362,9 +367,9 @@ public class Troubleshoot {
         }
     }
 
-    class FamilyOptionsPanel extends BaseSidebarPanel {
-        public FamilyOptionsPanel() {
-            super("Family Options");
+    class AudioTroubleshootingPanel extends BaseSidebarPanel {
+        public AudioTroubleshootingPanel() {
+            super("Audio Troubleshooting");
         }
 
         protected JPanel createContentPanel() {
@@ -372,9 +377,9 @@ public class Troubleshoot {
         }
     }
 
-    class ProtectionHistoryPanel extends BaseSidebarPanel {
-        public ProtectionHistoryPanel() {
-            super("Protection History");
+    class BluetoothAndDeviceConnectivityPanel extends BaseSidebarPanel {
+        public BluetoothAndDeviceConnectivityPanel() {
+            super("Bluetooth and Device Connectivity");
         }
 
         protected JPanel createContentPanel() {
@@ -382,9 +387,9 @@ public class Troubleshoot {
         }
     }
 
-    class SettingsPanel extends BaseSidebarPanel {
-        public SettingsPanel() {
-            super("Settings");
+    class BrowserIssuesPanel extends BaseSidebarPanel {
+        public BrowserIssuesPanel() {
+            super("Browser Issues");
         }
 
         protected JPanel createContentPanel() {
@@ -392,7 +397,7 @@ public class Troubleshoot {
         }
     }
 
-    abstract class BaseSidebarPanel extends JPanel {
+    abstract static class BaseSidebarPanel extends JPanel {
         protected static final Color PANEL_BACKGROUND = new Color(30, 30, 30);
         protected static final Color TEXT_COLOR = new Color(255, 255, 255);
         protected static final Color SECONDARY_TEXT_COLOR = new Color(170, 170, 170);
@@ -414,7 +419,7 @@ public class Troubleshoot {
             headerPanel.setBackground(PANEL_BACKGROUND);
             JLabel headerLabel = new JLabel(title);
             headerLabel.setForeground(TEXT_COLOR);
-            headerLabel.setFont(new Font("Segoe UI", 1, 18));
+            headerLabel.setFont(new Font("Segue UI", 1, 18));
             headerLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
             headerPanel.add(headerLabel, "Center");
             return headerPanel;
