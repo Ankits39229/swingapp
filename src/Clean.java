@@ -50,20 +50,20 @@ public class Clean extends JPanel {
 
         JLabel quickScanStatus = createStatusLabel("Ready");
         JProgressBar quickScanProgress = createProgressBar();
-        JPanel quickScanCard = createScanCard("Quick Scan",
-                "Perform a quick system scan to optimize basic performance",
+        JPanel quickScanCard = createScanCard("Temporary Files",
+                "Perform a temporary files cleaning to optimize basic performance",
                 "appScripts/ae.py", quickScanProgress, quickScanStatus);
 
         JLabel fullScanStatus = createStatusLabel("Ready");
         JProgressBar fullScanProgress = createProgressBar();
-        JPanel fullScanCard = createScanCard("Full Scan",
-                "Deep system scan to optimize all performance aspects",
+        JPanel fullScanCard = createScanCard("Prefetch",
+                "Perform prefetch files cleaning",
                 "full_scan.py", fullScanProgress, fullScanStatus);
 
         JLabel customScanStatus = createStatusLabel("Ready");
         JProgressBar customScanProgress = createProgressBar();
-        JPanel customScanCard = createScanCard("Custom Scan",
-                "Tailored scan with customized optimization options",
+        JPanel customScanCard = createScanCard("Full Clean",
+                "Clean both Temporary & Prefetch files",
                 "custom_scan.py", customScanProgress, customScanStatus);
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -240,7 +240,7 @@ public class Clean extends JPanel {
     }
 
     private JButton createScanButton(ActionListener listener) {
-        JButton button = new JButton("Start Scan");
+        JButton button = new JButton("Start Clean");
         button.setFont(BUTTON_FONT);
         button.setBackground(BUTTON_COLOR);
         button.setForeground(TEXT_COLOR);
@@ -288,10 +288,10 @@ public class Clean extends JPanel {
                 // Wait for the process to complete
                 int exitCode = process.waitFor();
                 if (exitCode == 0) {
-                    SwingUtilities.invokeLater(() -> statusLabel.setText("Scan Complete"));
+                    SwingUtilities.invokeLater(() -> statusLabel.setText("Cleaning Complete"));
                     SwingUtilities.invokeLater(() -> progressBar.setValue(100));
                 } else {
-                    SwingUtilities.invokeLater(() -> statusLabel.setText("Error: Scan failed"));
+                    SwingUtilities.invokeLater(() -> statusLabel.setText("Error: Cleaning failed"));
                 }
             } catch (Exception e) {
                 SwingUtilities.invokeLater(() -> statusLabel.setText("Error: " + e.getMessage()));
