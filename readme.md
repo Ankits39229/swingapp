@@ -2,7 +2,6 @@
 
 A modern, feature-rich security dashboard application built with Java Swing and Python, offering comprehensive system security management and monitoring capabilities.
 
-![Dashboard Screenshot](.gitignore/Homepage.png)
 
 ##  Features
 
@@ -78,13 +77,13 @@ Swingapp/
 ##  Screenshots
 
 ### Home Dashboard
-![Home Page](.gitignore/Homepage.png)
+![Home Page](Resources/Screenshots/Homepage.png)
 
 ### Auditing
-![Audit Page](.gitignore/Audit_page.png)
+![Audit Page](Resources/Screenshots/Audit_page.png)
 
 ### System Cleaning
-![Cleanup Page](.gitignore/Cleanup_page.png)
+![Cleanup Page](Resources/Screenshots/Cleanup_page.png)
 
 ##  UI Components
 
