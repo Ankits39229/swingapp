@@ -8,8 +8,7 @@ on:
 
 permissions:
   contents: write
-  packages: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,6 +26,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
+    - name: Generate version
+      id: version
+      run: |
+        echo "BUILD_VERSION=$(date +'%Y.%m.%d')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        
     - name: Upload JAR
       uses: actions/upload-artifact@v3
       with:
@@ -46,25 +50,25 @@ jobs:
       with:
         name: swingapp
         
-    - name: Get version
-      id: version
+    - name: Generate release tag
+      id: tag
       run: |
-        echo "::set-output name=version::$(date +'%Y.%m.%d.%H%M')"
+        echo "TAG_NAME=v$(date +'%Y.%m.%d')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
     
-    - name: Create Release
-      uses: ncipollo/release-action@v1
+    - name: Release with Notes
+      uses: softprops/action-gh-release@v1
       with:
-        artifacts: "swingapp-*.jar"
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: SwingApp v${{ steps.version.outputs.version }}
+        tag_name: ${{ env.TAG_NAME }}
+        name: Release ${{ env.TAG_NAME }}
+        draft: false
+        prerelease: false
+        files: swingapp-*.jar
         body: |
-          Automated release for version ${{ steps.version.outputs.version }}
+          Automated release for commit ${{ github.sha }}
           
           This release includes:
           - Latest JAR build
-          - Updated dependencies
-          
-          Download the JAR file and run with:
-          ```bash
-          java -jar swingapp-1.0-SNAPSHOT.jar
-          ```
+          - Auto-generated from main branch
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
