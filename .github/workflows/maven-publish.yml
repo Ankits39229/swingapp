@@ -46,11 +46,11 @@ jobs:
       id: date
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       
-    - name: Create Release
+    - name: Create SwingApp
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v${{ steps.date.outputs.date }}
-        name: Release ${{ steps.date.outputs.date }}
+        name: SwingApp
         draft: false
         prerelease: false
         files: swingapp-*.jar
