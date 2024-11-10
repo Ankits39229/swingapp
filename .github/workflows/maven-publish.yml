@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+  packages: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,17 +46,27 @@ jobs:
       with:
         name: swingapp
         
-    - name: Get current date
-      id: date
-      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-      
-    - name: Create SwingApp
-      uses: softprops/action-gh-release@v1
+    - name: Get version
+      id: version
+      run: |
+        echo "::set-output name=version::$(date +'%Y.%m.%d.%H%M')"
+    
+    - name: Create Release
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: v${{ steps.date.outputs.date }}
-        name: SwingApp ${{ steps.date.outputs.date }}
-        draft: false
+        artifacts: "swingapp-*.jar"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: v${{ steps.version.outputs.version }}
+        name: SwingApp v${{ steps.version.outputs.version }}
         prerelease: true
-        files: swingapp-*.jar
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          Automated release for version ${{ steps.version.outputs.version }}
+          
+          This release includes:
+          - Latest JAR build
+          - Updated dependencies
+          
+          Download the JAR file and run with:
+          ```bash
+          java -jar swingapp-1.0-SNAPSHOT.jar
+          ```
