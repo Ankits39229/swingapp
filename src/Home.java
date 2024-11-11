@@ -331,7 +331,7 @@ public class Home extends JPanel {
 
             new Thread(() -> {
                 try {
-                    ProcessBuilder pb = new ProcessBuilder("python", "appScripts/ae.py");
+                    ProcessBuilder pb = new ProcessBuilder("python", "PythonScripts/ae.py");
                     pb.redirectErrorStream(true);
 
                     Process process = pb.start();
