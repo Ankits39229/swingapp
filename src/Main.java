@@ -10,13 +10,10 @@ public class Main extends JFrame {
     private static final Color TEXT_COLOR = new Color(232, 234, 237);     // Soft white
     private static final Color ACCENT_COLOR = new Color(138, 180, 248);   // Modern blue
     private static final Color HOVER_COLOR = new Color(44, 45, 48);       // Subtle hover
-    private static final Color CARD_BACKGROUND = new Color(41, 42, 45);   // Slightly lighter than background
-    private static final Color SECONDARY_TEXT = new Color(154, 160, 166); // Muted text
-    private static final Font PROGRESS_FONT = new Font("Segoe UI", Font.PLAIN, 14);
 
 
-    private JPanel mainContentPanel;
-    private CardLayout cardLayout;
+    private final JPanel mainContentPanel;
+    private final CardLayout cardLayout;
 
     public Main() {
         setTitle("Windows Security");
@@ -94,13 +91,6 @@ public class Main extends JFrame {
         sideMenu.setLayout(new BoxLayout(sideMenu, BoxLayout.Y_AXIS));
         sideMenu.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
-        // Add logo/title at the top
-//        JLabel titleLabel = new JLabel("Windows Security");
-//        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
-//        titleLabel.setForeground(TEXT_COLOR);
-//        titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 25, 30, 25));
-//        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//        sideMenu.add(titleLabel);
 
         String[][] menuItems = {
                 {"Home", "Home"},
@@ -175,146 +165,6 @@ public class Main extends JFrame {
         return item;
     }
 
-    private JPanel createStatusPanel(String title, String status, ActionListener action) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(CARD_BACKGROUND);
-        panel.setBorder(BorderFactory.createCompoundBorder(
-                new EmptyBorder(15, 15, 15, 15),
-                BorderFactory.createLineBorder(ACCENT_COLOR, 1, true)
-        ));
-
-        // Status icon
-        JPanel iconPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-                g2d.setColor(ACCENT_COLOR);
-                g2d.fillOval(0, 0, 35, 35);
-
-                g2d.setColor(TEXT_COLOR);
-                g2d.setStroke(new BasicStroke(2.5f));
-                g2d.drawLine(10, 17, 15, 23);
-                g2d.drawLine(15, 23, 25, 13);
-            }
-        };
-        iconPanel.setPreferredSize(new Dimension(35, 35));
-        iconPanel.setMaximumSize(new Dimension(35, 35));
-        iconPanel.setBackground(CARD_BACKGROUND);
-
-        // Labels
-        JLabel titleLabel = new JLabel(title);
-        titleLabel.setForeground(TEXT_COLOR);
-        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-
-        JLabel statusLabel = new JLabel(status);
-        statusLabel.setForeground(SECONDARY_TEXT);
-        statusLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-
-        // Action button
-        JButton actionButton = new JButton("Quick Scan");
-        actionButton.setBackground(ACCENT_COLOR);
-        actionButton.setForeground(TEXT_COLOR);
-        actionButton.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        actionButton.setFocusPainted(false);
-        actionButton.setBorderPainted(false);
-        actionButton.addActionListener(action);
-
-        // Layout components
-        panel.add(iconPanel);
-        panel.add(Box.createRigidArea(new Dimension(0, 15)));
-        panel.add(titleLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 8)));
-        panel.add(statusLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 15)));
-        panel.add(actionButton);
-
-        return panel;
-    }
-
-
-    // Action methods
-    private void showQuickScan() {
-        showProgressDialog("Quick Scan", "Scanning system for threats...");
-    }
-
-    private void showAccountSettings() {
-        showFeatureDialog("Account Protection Settings");
-    }
-
-    private void showFirewallSettings() {
-        showFeatureDialog("Firewall Settings");
-    }
-
-    private void showAppSettings() {
-        showFeatureDialog("App & Browser Settings");
-    }
-
-    private void showDeviceSettings() {
-        showFeatureDialog("Device Security Settings");
-    }
-
-    private void showPerformanceStatus() {
-        showFeatureDialog("Performance Status");
-    }
-
-    private void showFeatureDialog(String feature) {
-        JDialog dialog = new JDialog(this, feature, true);
-        dialog.setSize(400, 300);
-        dialog.setLocationRelativeTo(this);
-
-        JPanel panel = new JPanel();
-        panel.setBackground(BACKGROUND_COLOR);
-        panel.setLayout(new BorderLayout(20, 20));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        JLabel label = new JLabel("Configuring: " + feature);
-        label.setForeground(TEXT_COLOR);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 16));
-
-        JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dialog.dispose());
-
-        panel.add(label, BorderLayout.CENTER);
-        panel.add(closeButton, BorderLayout.SOUTH);
-
-        dialog.add(panel);
-        dialog.setVisible(true);
-    }
-
-    private void showProgressDialog(String title, String message) {
-        JDialog dialog = new JDialog(this, title, true);
-        dialog.setSize(300, 150);
-        dialog.setLocationRelativeTo(this);
-
-        JPanel panel = new JPanel();
-        panel.setBackground(BACKGROUND_COLOR);
-        panel.setLayout(new BorderLayout(20, 20));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        JLabel label = new JLabel(message);
-        label.setForeground(TEXT_COLOR);
-
-        JProgressBar progressBar = new JProgressBar();
-        progressBar.setIndeterminate(true);
-
-        panel.add(label, BorderLayout.NORTH);
-        panel.add(progressBar, BorderLayout.CENTER);
-
-        dialog.add(panel);
-
-        // Create a timer to close the dialog after 3 seconds
-        Timer timer = new Timer(3000, e -> {
-            dialog.dispose();
-        });
-        timer.setRepeats(false);
-        timer.start();
-
-        dialog.setVisible(true);
-    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
