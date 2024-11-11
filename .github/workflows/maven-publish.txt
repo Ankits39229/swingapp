@@ -1,0 +1,72 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+  packages: write
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+      
+    - name: Upload JAR
+      uses: actions/upload-artifact@v3
+      with:
+        name: swingapp
+        path: target/swingapp-*.jar
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download JAR
+      uses: actions/download-artifact@v3
+      with:
+        name: swingapp
+        
+    - name: Get version
+      id: version
+      run: |
+        echo "::set-output name=version::$(date +'%Y.%m.%d.%H%M')"
+    
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "swingapp-*.jar"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: v${{ steps.version.outputs.version }}
+        name: SwingApp v${{ steps.version.outputs.version }}
+        prerelease: true
+        body: |
+          Automated release for version ${{ steps.version.outputs.version }}
+          
+          This release includes:
+          - Latest JAR build
+          - Updated dependencies
+          
+          Download the JAR file and run with:
+          ```bash
+          java -jar swingapp-1.0-SNAPSHOT.jar
+          ```
