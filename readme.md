@@ -67,7 +67,7 @@ Swingapp/
 │       ├── Remediate.java
 │       ├── Account.java
 │       └── Settings.java
-├── appScripts
+├── scripts_Py
 |       ├── troubleshoot/
 |       |   ├── temp.py
 │       └── [Python scripts]
