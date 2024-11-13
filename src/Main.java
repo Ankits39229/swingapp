@@ -138,7 +138,7 @@ public class Main extends JFrame {
         // Menu text
         JLabel label = new JLabel(text);
         label.setForeground(TEXT_COLOR);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        label.setFont(new Font("Segue UI", Font.PLAIN, 14));
 
         item.add(iconLabel);
         item.add(Box.createRigidArea(new Dimension(15, 0)));

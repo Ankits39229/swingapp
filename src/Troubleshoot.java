@@ -176,17 +176,6 @@ public class Troubleshoot {
         return placeholder;
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            JFrame frame = new JFrame("Security App");
-//            frame.setDefaultCloseOperation(3);
-//            frame.setSize(1200, 800);
-//            Troubleshoot troubleshoot = new Troubleshoot(new JPanel[0]);
-//            frame.setContentPane(troubleshoot.getSplitPane());
-//            frame.setVisible(true);
-//        });
-//    }
-
     public static class SystemPerformancePanel extends BaseSidebarPanel {
         public SystemPerformancePanel() {
             super("System Performance");
@@ -419,7 +408,7 @@ public class Troubleshoot {
             headerPanel.setBackground(PANEL_BACKGROUND);
             JLabel headerLabel = new JLabel(title);
             headerLabel.setForeground(TEXT_COLOR);
-            headerLabel.setFont(new Font("Segue UI", 1, 18));
+            headerLabel.setFont(new Font("Segue UI", Font.BOLD, 18));
             headerLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
             headerPanel.add(headerLabel, "Center");
             return headerPanel;
