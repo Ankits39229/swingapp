@@ -57,7 +57,7 @@ public class Main extends JFrame {
     private void setupUIDefaults() {
         UIManager.put("Button.background", ACCENT_COLOR);
         UIManager.put("Button.foreground", TEXT_COLOR);
-        UIManager.put("Button.font", new Font("Segoe UI", Font.PLAIN, 13));
+        UIManager.put("Button.font", new Font("Segue UI", Font.PLAIN, 13));
         UIManager.put("Button.focus", new Color(0, 0, 0, 0));
         UIManager.put("Button.select", ACCENT_COLOR.darker());
     }

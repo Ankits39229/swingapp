@@ -186,7 +186,7 @@ public class Audit extends JPanel {
                 outputArea.setText("");
 
                 try {
-                    ProcessBuilder pb = new ProcessBuilder("python", "scripts_Py/newwall.py");
+                    ProcessBuilder pb = new ProcessBuilder("python","../pythonScripts/fullAudit.py");
                     Process process = pb.start();
 
                     BufferedReader reader = new BufferedReader(
