@@ -82,12 +82,12 @@ public class Audit extends JPanel {
         headerPanel.setBackground(BACKGROUND_COLOR);
         headerPanel.setPreferredSize(new Dimension(getWidth(), 100));
 
-        JLabel header = new JLabel("Security Audit");
+        JLabel header = new JLabel("Security Remediation");
         header.setForeground(TEXT_COLOR);
         header.setFont(HEADER_FONT);
         header.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel subtitle = new JLabel("Audit your system Configuration");
+        JLabel subtitle = new JLabel("Remediate your system Configuration");
         subtitle.setForeground(SECONDARY_TEXT);
         subtitle.setFont(DESC_FONT);
         subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -157,7 +157,7 @@ public class Audit extends JPanel {
     }
 
     private JButton createScanButton(ActionListener action) {
-        JButton button = new JButton("Run Audit");
+        JButton button = new JButton("Remediate Audit");
         button.setFont(BUTTON_FONT);
         button.setBackground(BUTTON_COLOR);
         button.setForeground(Color.WHITE);
@@ -186,7 +186,7 @@ public class Audit extends JPanel {
                 outputArea.setText("");
 
                 try {
-                    ProcessBuilder pb = new ProcessBuilder("python","../pythonScripts/fullAudit.py");
+                    ProcessBuilder pb = new ProcessBuilder("python", "PythonScripts/18.5.py");
                     Process process = pb.start();
 
                     BufferedReader reader = new BufferedReader(

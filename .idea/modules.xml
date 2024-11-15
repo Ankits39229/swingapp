@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PythonScripts/PythonScripts.iml" filepath="$PROJECT_DIR$/PythonScripts/PythonScripts.iml" />
       <module fileurl="file://$PROJECT_DIR$/appScripts/appScripts.iml" filepath="$PROJECT_DIR$/appScripts/appScripts.iml" />
       <module fileurl="file://$PROJECT_DIR$/maven.iml" filepath="$PROJECT_DIR$/maven.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pythonScripts/pythonScripts.iml" filepath="$PROJECT_DIR$/pythonScripts/pythonScripts.iml" />
       <module fileurl="file://$PROJECT_DIR$/swingapp.iml" filepath="$PROJECT_DIR$/swingapp.iml" />
     </modules>
   </component>

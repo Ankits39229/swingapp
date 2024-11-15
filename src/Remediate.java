@@ -186,7 +186,7 @@ public class Remediate extends JPanel {
                 outputArea.setText("");
 
                 try {
-                    ProcessBuilder pb = new ProcessBuilder("python", "appScripts/troubleshoot/temp.py");
+                    ProcessBuilder pb = new ProcessBuilder("python", "PythonScripts/18.5.py");
                     Process process = pb.start();
 
                     BufferedReader reader = new BufferedReader(

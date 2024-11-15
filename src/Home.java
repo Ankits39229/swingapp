@@ -331,7 +331,7 @@ public class Home extends JPanel {
 
             new Thread(() -> {
                 try {
-                    ProcessBuilder pb = new ProcessBuilder("python", "pythonScripts/2.1.py`");
+                    ProcessBuilder pb = new ProcessBuilder("python", "PythonScripts/2.1.py");
                     pb.redirectErrorStream(true);
 
                     Process process = pb.start();
@@ -452,15 +452,4 @@ public class Home extends JPanel {
             return insets;
         }
     }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            JFrame frame = new JFrame("Security Scanner");
-//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            frame.add(new Home());
-//            frame.pack();
-//            frame.setLocationRelativeTo(null);
-//            frame.setVisible(true);
-//        });
-//    }
 }
